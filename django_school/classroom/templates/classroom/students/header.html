@@ -1,0 +1,78 @@
+<!-- start header -->
+
+<header class="header-with-topbar">
+    <!-- start header top bar -->
+    <div class="header-top-bar top-bar-dark bg-gradient-flamingo-amethyst-green disable-fixed">
+        <div class="container-fluid">
+            <div class="row h-42px align-items-center m-0">
+                <div class="col-12 text-center justify-content-center">
+                    <div class="fs-14 text-white">Teachers inspire dreams, and students turn them into realities through  <a href="#" class="btn btn-link-gradient btn-small text-white thin">learning love<i class="feather icon-feather-arrow-right"></i><span class="bg-white opacity-4"></span></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header top bar -->
+    <!-- start navigation -->
+    <nav class="navbar navbar-expand-lg header-light bg-transparent disable-fixed border-bottom border-color-transparent-dark-very-light">
+        <div class="container-fluid">
+            <div class="col-auto">
+                <h1 class="logo">
+                    <a href="{% url 'home' %}">
+                        Quiz
+                        {% if user.is_authenticated %}
+                        {% if user.is_teacher %}
+                        <span class="icon-feather" data-toggle="tooltip" data-placement="right" title="Teacher profile"></span>
+                        {% else %}
+                        <span class="icon-graduation-cap" data-toggle="tooltip" data-placement="right" title="Student profile"></span>
+                        {% endif %}
+                        {% endif %}
+                    </a>
+                </h1>
+
+            </div>
+            <div class="col-auto menu-order left-nav">
+                <button class="navbar-toggler float-start" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-line"></span>
+                    <span class="navbar-toggler-line"></span>
+                    <span class="navbar-toggler-line"></span>
+                    <span class="navbar-toggler-line"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav alt-font">
+                        <li class="nav-item"><a href="{% url 'home' %]" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{% url 'details:about' %}" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="{% url 'details:what_we_do' %}" class="nav-link">What we do</a></li>
+                        <li class="nav-item"><a href="{% url 'details:case' %}" class="nav-link">Cases</a></li>
+<!--                        <li class="nav-item"><a href="demo-data-analysis-testimonials.html" class="nav-link">Testimonials</a></li>-->
+<!--                        <li class="nav-item"><a href="demo-data-analysis-pricing.html" class="nav-link">Pricing</a></li>-->
+                        <li class="nav-item"><a href="{% url 'details:contact' %}" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-auto ms-auto d-none d-sm-flex">
+                <div class="header-button ms-25px">
+                    {% if user.is_authenticated %}
+                    <p class="pt-3">
+                        <strong>{{ user.username }}{% if user.is_student %} - {{ user.student.score }}{% endif %}
+                    <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" >
+                            Log out
+                        </button>
+                    </form>
+                        </strong> |
+                    </p>
+                    {% else %}
+                    <ul class="navbar-nav alt-font">
+                        <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">login</a></li>
+                        <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">signup</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- end navigation -->
+</header>
+<!-- end header -->
+
