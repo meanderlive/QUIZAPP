@@ -39,7 +39,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav alt-font">
-                        <li class="nav-item"><a href="{% url 'home' %]" class="nav-link">Home</a></li>
+<!--                        <li class="nav-item"><a href="{% url 'home' %]" class="nav-link">Home</a></li>-->
                         <li class="nav-item"><a href="{% url 'details:about' %}" class="nav-link">About</a></li>
                         <li class="nav-item"><a href="{% url 'details:what_we_do' %}" class="nav-link">What we do</a></li>
                         <li class="nav-item"><a href="{% url 'details:case' %}" class="nav-link">Cases</a></li>
@@ -53,18 +53,20 @@
                 <div class="header-button ms-25px">
                     {% if user.is_authenticated %}
                     <p class="pt-3">
-                        <strong>{{ user.username }}{% if user.is_student %} - {{ user.student.score }}{% endif %}
-                    <form method="POST" action="{% url 'logout' %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" >
-                            Log out
-                        </button>
-                    </form>
-                        </strong> |
+                        <strong>{{ user.username }}{% if user.is_student %} - {{ user.student.score }}{% endif %} &nbsp;
+                            <a href="#" onclick="document.getElementById('logout-form').submit();" style="text-decoration: none; color: inherit;">
+                                Logout
+                            </a>
+
+                            <!-- Hidden form for logout -->
+                            <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
+                                {% csrf_token %}
+                            </form>
+                        </strong>
                     </p>
                     {% else %}
                     <ul class="navbar-nav alt-font">
-                        <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">login</a></li>
+                        <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">login</a></li>
                         <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link">signup</a></li>
                     </ul>
                     {% endif %}
