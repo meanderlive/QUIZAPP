@@ -42,9 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'crispy_forms',
-
+    'crispy_bootstrap4',  # Ensure this is included too
     'classroom',
 ]
+#CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
